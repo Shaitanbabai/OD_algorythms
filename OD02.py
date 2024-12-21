@@ -1,122 +1,6 @@
-""" Стек """
-class Stack:
-    def __init__(self):
-        self.items = []
-
-    def push(self, item):
-        self.items.append(item)
-
-    def pop(self):
-        return self.items.pop() if not self.is_empty() else None
-
-    def is_empty(self):
-        return len(self.items) == 0
-
-    def peek(self):
-        return self.items[-1] if not self.is_empty() else None
-
-# Установка точек движения
-route_stack = Stack()
-route_stack.push("Склад")
-route_stack.push("Остановка 1")
-route_stack.push("Остановка 2")
-
-print("Current location:", route_stack.peek())
-
-# Возвращаемся назад
-while not route_stack.is_empty():
-    print("Возвращаемся:", route_stack.pop())
-
-
-""" Очередь """
-class Queue:
-    def __init__(self):
-        self.items = []
-
-    def enqueue(self, item):
-        self.items.append(item)
-
-    def dequeue(self):
-        return self.items.pop(0) if not self.is_empty() else None
-
-    def is_empty(self):
-        return len(self.items) == 0
-
-# Загрузка машин
-truck_queue = Queue()
-truck_queue.enqueue("Машина 1")
-truck_queue.enqueue("Машина 2")
-truck_queue.enqueue("Машина 3")
-
-print("Машина под загрузку:", truck_queue.dequeue())
-print("Машина под загрузку:", truck_queue.dequeue())
-
-
-""" Дерево """
-class Node:
-    def __init__(self, value):
-        self.value = value
-        self.children = []
-
-    # Добавляем дочерние узлы
-    def add_child(self, child_node):
-        self.children.append(child_node)
-
-# Печать дерева
-def print_tree(node, level=0):
-    print(" " * level * 2 + node.value)
-    for child in node.children:
-        print_tree(child, level + 1)
-
-# Создаем узлы
-root = Node("Центральный офис")
-branch1 = Node("Филиал 1")
-branch2 = Node("Филиал 2")
-store1 = Node("Склад 1")
-store2 = Node("Склад 2")
-
-# Добавляем дочерние узлы
-root.add_child(branch1)
-root.add_child(branch2)
-branch1.add_child(store1)
-branch2.add_child(store2)
-
-print("Логистическая иерархия:")
-print_tree(root)
-
-
-"""Граф"""
-class Graph:
-    def __init__(self):
-        self.graph = {}
-
-    # Добавление ребер
-    def add_edge(self, node1, node2):
-        if node1 not in self.graph:
-            self.graph[node1] = []
-        if node2 not in self.graph:
-            self.graph[node2] = []
-        self.graph[node1].append(node2)
-        self.graph[node2].append(node1)
-
-    # Печать графа
-    def print_graph(self):
-        for node, adjacents in self.graph.items():
-            print(f"{node}: {', '.join(adjacents)}")
-
-# Маршруты
-road_network = Graph()
-road_network.add_edge("Город A", "Город B")
-road_network.add_edge("Город A", "Город C")
-road_network.add_edge("Город B", "Город D")
-
-print("Маршруты:")
-road_network.print_graph()
-
-
-""" 
-    Прикладной пример с применением всех четырех алгоритмов (транспортная задача) 
-    Выехав из центрального офиса (центра распределения) машина должна проехать 100км и вернуться 
+"""
+    Прикладной пример с применением всех четырех алгоритмов (транспортная задача)
+    Выехав из центрального офиса (центра распределения) машина должна проехать 100км и вернуться
     в центральный офис, объехав максимальное количество точек на своем маршруте
 """
 
@@ -252,3 +136,120 @@ for _ in range(3):  # Для каждой машины
         print(f"Возвращаемся из точки {last_stop}")
 
 print("Все машины вернулись в центральный офис.")
+
+
+# """ Стек """
+# class Stack:
+#     def __init__(self):
+#         self.items = []
+#
+#     def push(self, item):
+#         self.items.append(item)
+#
+#     def pop(self):
+#         return self.items.pop() if not self.is_empty() else None
+#
+#     def is_empty(self):
+#         return len(self.items) == 0
+#
+#     def peek(self):
+#         return self.items[-1] if not self.is_empty() else None
+#
+# # Установка точек движения
+# route_stack = Stack()
+# route_stack.push("Склад")
+# route_stack.push("Остановка 1")
+# route_stack.push("Остановка 2")
+#
+# print("Current location:", route_stack.peek())
+#
+# # Возвращаемся назад
+# while not route_stack.is_empty():
+#     print("Возвращаемся:", route_stack.pop())
+#
+#
+# """ Очередь """
+# class Queue:
+#     def __init__(self):
+#         self.items = []
+#
+#     def enqueue(self, item):
+#         self.items.append(item)
+#
+#     def dequeue(self):
+#         return self.items.pop(0) if not self.is_empty() else None
+#
+#     def is_empty(self):
+#         return len(self.items) == 0
+#
+# # Загрузка машин
+# truck_queue = Queue()
+# truck_queue.enqueue("Машина 1")
+# truck_queue.enqueue("Машина 2")
+# truck_queue.enqueue("Машина 3")
+#
+# print("Машина под загрузку:", truck_queue.dequeue())
+# print("Машина под загрузку:", truck_queue.dequeue())
+#
+#
+# """ Дерево """
+# class Node:
+#     def __init__(self, value):
+#         self.value = value
+#         self.children = []
+#
+#     # Добавляем дочерние узлы
+#     def add_child(self, child_node):
+#         self.children.append(child_node)
+#
+# # Печать дерева
+# def print_tree(node, level=0):
+#     print(" " * level * 2 + node.value)
+#     for child in node.children:
+#         print_tree(child, level + 1)
+#
+# # Создаем узлы
+# root = Node("Центральный офис")
+# branch1 = Node("Филиал 1")
+# branch2 = Node("Филиал 2")
+# store1 = Node("Склад 1")
+# store2 = Node("Склад 2")
+#
+# # Добавляем дочерние узлы
+# root.add_child(branch1)
+# root.add_child(branch2)
+# branch1.add_child(store1)
+# branch2.add_child(store2)
+#
+# print("Логистическая иерархия:")
+# print_tree(root)
+#
+#
+# """Граф"""
+# class Graph:
+#     def __init__(self):
+#         self.graph = {}
+#
+#     # Добавление ребер
+#     def add_edge(self, node1, node2):
+#         if node1 not in self.graph:
+#             self.graph[node1] = []
+#         if node2 not in self.graph:
+#             self.graph[node2] = []
+#         self.graph[node1].append(node2)
+#         self.graph[node2].append(node1)
+#
+#     # Печать графа
+#     def print_graph(self):
+#         for node, adjacents in self.graph.items():
+#             print(f"{node}: {', '.join(adjacents)}")
+#
+# # Маршруты
+# road_network = Graph()
+# road_network.add_edge("Город A", "Город B")
+# road_network.add_edge("Город A", "Город C")
+# road_network.add_edge("Город B", "Город D")
+#
+# print("Маршруты:")
+# road_network.print_graph()
+
