@@ -126,16 +126,16 @@ class Stack:
         self.items = []
 
     def push(self, item):
-        self.items.append(item)
+        self.items.append(item)  # O(1)
 
     def pop(self):
-        return self.items.pop() if not self.is_empty() else None
+        return self.items.pop() if not self.is_empty() else None  # O(1)
 
     def is_empty(self):
-        return len(self.items) == 0
+        return len(self.items) == 0  # O(1)
 
     def peek(self):
-        return self.items[-1] if not self.is_empty() else None
+        return self.items[-1] if not self.is_empty() else None  # O(1)
 
 # Очередь для управления загрузкой машин
 class Queue:
@@ -143,13 +143,13 @@ class Queue:
         self.items = []
 
     def enqueue(self, item):
-        self.items.append(item)
+        self.items.append(item)  # O(1)
 
     def dequeue(self):
-        return self.items.pop(0) if not self.is_empty() else None
+        return self.items.pop(0) if not self.is_empty() else None  # O(n)
 
     def is_empty(self):
-        return len(self.items) == 0
+        return len(self.items) == 0  # O(1)
 
 # Дерево для представления логистической иерархии
 class Node:
@@ -158,12 +158,12 @@ class Node:
         self.children = []
 
     def add_child(self, child_node):
-        self.children.append(child_node)
+        self.children.append(child_node)  # O(1)
 
 def print_tree(node, level=0):
-    print(" " * level * 2 + node.value)
+    print(" " * level * 2 + node.value)  # O(1)
     for child in node.children:
-        print_tree(child, level + 1)
+        print_tree(child, level + 1)  # O(n), где n — количество узлов
 
 # Граф для моделирования дорожной сети
 class Graph:
@@ -175,12 +175,12 @@ class Graph:
             self.graph[node1] = []
         if node2 not in self.graph:
             self.graph[node2] = []
-        self.graph[node1].append(node2)
-        self.graph[node2].append(node1)
+        self.graph[node1].append(node2)  # O(1)
+        self.graph[node2].append(node1)  # O(1)
 
     def print_graph(self):
         for node, adjacents in self.graph.items():
-            print(f"{node}: {', '.join(adjacents)}")
+            print(f"{node}: {', '.join(adjacents)}")  # O(n + m), где n — количество узлов, m — количество ребер
 
 # Матрица расстояний (в километрах)
 distance_matrix = [
@@ -232,7 +232,8 @@ for _ in range(3):  # Для каждой машины
     while total_distance < 100:
         min_distance = float('inf')
         next_location = None
-        for i in range(len(distance_matrix[current_location])):
+        # Проходим по всем узлам, чтобы найти минимальное расстояние
+        for i in range(len(distance_matrix[current_location])):  # O(n)
             if i not in visited and distance_matrix[current_location][i] < min_distance:
                 min_distance = distance_matrix[current_location][i]
                 next_location = i
@@ -246,7 +247,7 @@ for _ in range(3):  # Для каждой машины
 
     # Возвращаемся назад
     print("Возвращение в центральный офис:")
-    while not route_stack.is_empty():
+    while not route_stack.is_empty():  # O(n)
         last_stop = route_stack.pop()
         print(f"Возвращаемся из точки {last_stop}")
 
